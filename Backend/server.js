@@ -1,6 +1,12 @@
 const express = require("express");
 const app = express();
 
-const http = require("http").createServer(app);
-const server = require("socket.io")(http);
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
 
+app.get("/", (req, res) => {
+  res.send("hi");
+});
+
+const port = process.env.PORT || 3000;
+server.listen(port, () => console.log("server is running "));
